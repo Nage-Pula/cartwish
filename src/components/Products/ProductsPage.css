@@ -1,0 +1,14 @@
+.products_page{
+   display: grid;
+   grid-template-columns: 1fr 4fr;
+   padding: 20px;
+}
+.products_sidebar{
+    width: 250px;
+    border-right: 1px solid #eee;
+    padding: 20px;
+}
+.products_list_section{
+    flex: 1;
+    padding: 20px;
+}
