@@ -10,6 +10,7 @@ export async function signup(user, profile) {
     body.append('email', user.email);
     body.append('password', user.password);
     body.append('deliveryAddress', user.deliveryAddress);
+    body.append('account', user.account);
     if (profile) {
         body.append('profilePic', profile);
     }
@@ -21,10 +22,15 @@ export async function signup(user, profile) {
 export async  function login(user) {
     const {data} = await apiClient.post('user/login', user);
     localStorage.setItem(tokenName, data.token);
+
+   
 }
 
 export function logout() {
+    
     localStorage.removeItem(tokenName);
+
+    
 }
 
 export function getUser() {

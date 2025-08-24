@@ -9,6 +9,9 @@ import CartContext from "../../contexts/CartContext"; // Importing CartContext
 import { toast } from "react-toastify"; // Importing toast for notifications
 import { set } from './../../../node_modules/zod/v4/classic/schemas';
 import { checkoutAPI } from "../../Services/orderServices";
+import IFrame from "../../iFrame/iFrame"; // Importing the IFrame component
+import { getUser } from '../../Services/userServices';
+
 
 
 
@@ -19,6 +22,7 @@ const CartPage = () => {
 	useEffect(() => {
 		let total = 0;
 		cart.forEach((item) => {
+			
 			total += item.product.price * item.quantity;
 		});
 		setSubTotal(total);
@@ -35,15 +39,15 @@ const CartPage = () => {
 	};
 
 	return (
-		<section className=" align_center cart_page">
+		<><section className=" align_center cart_page">
 			<div className="align_center user_info">
 				<img
 					src={`http://localhost:5000/profile/${userObj?.profilePic}`}
-					alt="user profile"
-				/>
+					alt="user profile" />
 				<div>
 					<p className="user_name">Name: {userObj?.name}</p>
 					<p className="user_email">Email: {userObj?.email}</p>
+					<p className="user_account">Account: {userObj?.account}</p>  {/* modified*/}
 				</div>
 			</div>
 			<Table headings={["Item", "Price", "Quantity", "Total", "Remove"]}>
@@ -54,14 +58,12 @@ const CartPage = () => {
 							<td>{product.title}</td>
 							<td>${product.price}</td>
 							<td className="align_center table_quantity_input">
-								<QuantityInput 
-								quantity={quantity} 
-								stock={product.stock} 
-								setQuantity={updateCart}
-								cartPage={true}
-								productId={product._id}
-								
-								/>
+								<QuantityInput
+									quantity={quantity}
+									stock={product.stock}
+									setQuantity={updateCart}
+									cartPage={true}
+									productId={product._id} />
 							</td>
 							<td>${product.price * quantity}</td>
 							<td>
@@ -69,8 +71,7 @@ const CartPage = () => {
 									src={remove}
 									alt="remove icon"
 									className="cart_remove_icon"
-									onClick={() => removeFromCart(product._id)}
-								/>
+									onClick={() => removeFromCart(product._id)} />
 							</td>
 						</tr>
 					))}
@@ -93,8 +94,18 @@ const CartPage = () => {
 				</tbody>
 			</table>
 			<button className="search_button Checkout_button" onClick={checkout}>Checkout</button>
-		</section>
+		</section><div>
+				<IFrame
+					src="/iFrame/index.html"
+					title="Example IFrame"
+					width={600}
+					height={800} 
+					position="bottom-right"
+					/>
+			</div></>
 	);
 };
+
+
 
 export default CartPage;

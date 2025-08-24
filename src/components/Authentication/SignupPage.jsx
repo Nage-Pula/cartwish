@@ -4,16 +4,18 @@ import {z} from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import "./SignupPage.css";
 import user from "../../assets/user.webp";
-import { signup } from "../../Services/userServices";
+import { getUser, signup } from "../../Services/userServices";
+import { Navigate } from "react-router-dom";
 
 
-
+let first_login_date1 ;
 const schema = z.object({
     name: z.string().min(3,{message: "Name must be at least 3 characters long"}),
     email: z.string().email({message: "Please enter a valid email address"}),
-    password: z.string().min(6,{message: "Password must be at least 6 characters long"}),
-    confirmPassword: z.string().min(6),
-    deliveryAddress: z.string().min(15,{message: "Delivery Address must be at least 15 characters long"})
+    password: z.string().min(3,{message: "Password must be at least 3 characters long"}),
+    account: z.string().min(1, { message: "Please select an account type" }),
+    confirmPassword: z.string().min(3,{message: "Confirm Password must be at least 3 characters long"}),
+    deliveryAddress: z.string().min(5,{message: "Delivery Address must be at least 5 characters long"})
 }).refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
     path: ["confirmPassword"]
@@ -26,6 +28,9 @@ const SignupPage = () => {
         resolver: zodResolver(schema)
     });
     const onSubmit = async (formData) => {
+
+             first_login_date1 = new Date().toISOString();
+            console.log("Form Data Submitted: ", first_login_date1);
         try{
             await signup(formData, profilePic);
            window.location = "/";
@@ -34,7 +39,9 @@ const SignupPage = () => {
             if (err.response && err.response.status === 400) {
                 setFormError(err.response.data.message);
             }
-        }       
+        } 
+
+   
     };
      if (getUser()) {
             return <Navigate to="/" />
@@ -107,6 +114,18 @@ const SignupPage = () => {
                         {errors.confirmPassword && <em className='form_error'>{errors.confirmPassword.message}</em>}
                     </div>
 
+                    <div>
+                        <label htmlFor='account'>Account</label>                        
+                        <select id="account" className="form_text_input" {...register("account")}>
+                        <option value="">-- Choose Plan --</option>
+                        <option value="basic">Basic</option>
+                        <option value="standard">Standard</option>
+                        <option value="premium">Premium</option>
+                        <option value="enterprise">Enterprise</option>
+                    </select>
+                        {errors.account && <em className='form_error'>{errors.account.message}</em>}
+                    </div>
+
                     <div className='signup_textares_section'>
                         <label htmlFor='address'>Delivery Address</label>
                         <textarea
@@ -133,4 +152,5 @@ export default SignupPage;
 // email - Please enter valid email
 // password - Password must be at least 8 characters.
 // confirmPassword - Confirm Password does not match Password
+// account - Please select an account type.
 // deliveryAddress - Address must be at least 15 characters.

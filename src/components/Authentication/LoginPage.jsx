@@ -5,11 +5,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import './LoginPage.css';
 import { getUser, login } from '../../Services/userServices';
 import { useLocation } from 'react-router-dom';
-
+import { Navigate } from 'react-router-dom';
 
 const schema =z.object({
     email:z.string().email({message: "Please enter a valid email addresss"}).min(3),
-    password:z.string().min(6,{message: "Password must be at least 6 characters long"})
+    password:z.string().min(4,{message: "Password must be at least 4 characters long"})
 })
 
 const LoginPage = () => {
@@ -17,7 +17,7 @@ const LoginPage = () => {
     const [formError, setFormError] = useState("");
     const { register, handleSubmit, formState: { errors }, } = useForm({
         resolver: zodResolver(schema) });
-    
+        
         const onSubmit=async(formData)=>{
         try { 
             await login(formData);
@@ -28,6 +28,7 @@ const LoginPage = () => {
                 setFormError(err.response.data.message);
             }
         }
+        
     };
     if (getUser()) {
         return <Navigate to="/" />
@@ -49,10 +50,10 @@ const LoginPage = () => {
                 <div>
                     <label htmlFor="password">Password</label>
                     <input type="password" id="password" className="form_text_input" placeholder='Enter your password' {...register("password")} />
-                    {errors.password && <em className="form_error">{errors.password.message}</em>}
-                  
+                    {errors.password && <em className="form_error">{errors.password.message}</em>}                 
                 
                 </div>
+        
                 {formError && <em className='form_error'>{formError}</em>}
                 <button type="submit" className="search_button form_submit">Submit</button>
             </div>

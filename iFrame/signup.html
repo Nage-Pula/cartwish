@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  //<!-- Gainsight PX Tag-->
+  <script type="text/javascript">
+  (function(n,t,a,e,co){var i="aptrinsic";n[i]=n[i]||function(){
+      (n[i].q=n[i].q||[]).push(arguments)},n[i].p=e;n[i].c=co;
+    var r=t.createElement("script");r.async=!0,r.src=a+"?a="+e;
+    var c=t.getElementsByTagName("script")[0];c.parentNode.insertBefore(r,c)
+  })(window,document,"https://web-sdk.aptrinsic.com/api/aptrinsic.js","AP-WLHVOASMAZVB-2-4");
+</script>
+//<!-- Gainsight PX Tag-->
+  <title>Signup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 1rem;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    input {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 0.5rem;
+      background: #0077cc;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <h2>Signup Form</h2>
+  <form id="signupForm">
+    <input type="text" name="name" placeholder="Full Name" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <script>
+
+    // const form = document.getElementById('signupForm');
+
+    // form.addEventListener('submit', function(e) {
+    //   e.preventDefault();
+
+    //   // Fake API interaction could go here...
+
+    //   // Notify parent window
+    //   window.parent.postMessage({ type: "signupSuccess" }, window.location.origin);
+
+    //   // Redirect to another page
+    //   window.location.href = "welcome.html";
+    // });
+  const form = document.getElementById('signupForm');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    aptrinsic("identify", {
+      "id": data.email+" iframe",
+      "name": data.name,
+    },
+      {
+        "id":data.name+" iframe account",
+        "email": data.email
+      }
+    );
+    window.parent.postMessage({ type: "signupSuccess", data }, window.location.origin);
+  });
+
+
+  </script>
+</body>
+</html>

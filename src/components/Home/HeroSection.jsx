@@ -2,6 +2,7 @@ import React from 'react'
 import './HeroSection.css'
 import { Link } from 'react-router-dom';
 
+
 const HeroSection = ({title, subtitle, image, link}) => {
   return (
    <section className='hero_section'>

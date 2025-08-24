@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background: #0077cc;
+      color: white;
+      padding: 1rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    nav {
+      background: #005fa3;
+      width: 100%;
+      padding: 0.5rem;
+      text-align: center;
+      color: white;
+    }
+
+    .iframe-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      height: 500px;
+      margin-top: 2rem;
+      border: 2px solid #ccc;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    .spinner.hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .iframe-container {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header><h1>Welcome to Our Site</h1></header>
+  <nav>Home | About | Contact</nav>
+
+  <div class="iframe-container">
+    <div class="spinner" id="loader">Loading...</div>
+    <iframe src="signup.html" id="signupFrame"></iframe>
+  </div>
+
+  <script>
+    /* Gainsight PX Tag */
+
+  (function(n,t,a,e,co){
+    var i="aptrinsic";
+    n[i]=n[i]||function(){
+      (n[i].q=n[i].q||[]).push(arguments)},
+      n[i].p=e;n[i].c=co;
+    var r=t.createElement("script");
+    r.async=!0,r.src=a+"?a="+e;
+    var c=t.getElementsByTagName("script")[0];
+    c.parentNode.insertBefore(r,c)
+  })
+  (window,document,"https://web-sdk.aptrinsic.com/api/aptrinsic.js","AP-WLHVOASMAZVB-2-4");
+
+/*!-- Gainsight PX Tag--*/
+    // const iframe = document.getElementById('signupFrame');
+    // const loader = document.getElementById('loader');
+
+    // iframe.onload = () => {
+    //   loader.classList.add('hidden');
+    // };
+
+    // window.addEventListener("message", (event) => {
+    //   if (event.origin !== window.location.origin) return;
+
+    //   const { type, data } = event.data;
+
+    //   if (type === "signupSuccess") {
+    //     alert("Signup completed! 🎉 Redirecting...");
+    //   }
+    // });
+  const iframe = document.getElementById('signupFrame');
+  const loader = document.getElementById('loader');
+
+  iframe.onload = () => {
+    loader.classList.add('hidden');
+  };
+
+  window.addEventListener("message", (event) => {
+    if (event.origin !== window.location.origin) return;
+
+    const { type } = event.data;
+
+    if (type === "signupSuccess") {
+      window.location.href = "welcome.html"; // full page redirect
+    }
+  });
+
+
+  </script>
+</body>
+</html>

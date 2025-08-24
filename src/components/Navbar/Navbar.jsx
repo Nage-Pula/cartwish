@@ -11,6 +11,7 @@ import LinkWithIcon from './LinkWithIcon';
 import UserContext from '../../contexts/UserContext';
 import CartContext from '../../contexts/CartContext'; // Importing CartContext
 import { getSuggestionsAPI } from '../../Services/ProductServices'
+import { getUser } from '../../Services/userServices'
 
 
 const Navbar = () => {
@@ -60,12 +61,16 @@ const Navbar = () => {
       setSelectedItem(-1); // Reset selected item if not navigating
   }
 }
-
+const user = getUser
   }
   return (
+    
+        
     <nav className='align_center navbar'>
       <div className='align_center'>
-        <h1 className='navbar_heading'>Cart Wish</h1>
+        <h1 className='navbar_heading'>Cart Wish <span> {user && <p style={{ marginLeft: "2rem", marginTop: "1rem" }}> Welcome  {user.name} 👋</p>}</span>
+         
+        </h1>
         <form action="" className='align_center navbar_form' onSubmit={handleSubmit}>
           <input type="text"
            placeholder='Search Products'

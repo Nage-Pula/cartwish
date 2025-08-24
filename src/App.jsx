@@ -13,6 +13,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { getCartAPI } from "./components/Cart/cartServices"; // Importing the getCart function
 import CartContext from "./contexts/CartContext";
 import { removeFromCartAPI } from "./components/Cart/cartServices"; // Importing the removeFromCart function
+import IFrame from "./iFrame/iFrame"; // Importing the IFrame component
+
 
 setAuthToken(getJwt());
 
@@ -31,6 +33,34 @@ const App = () => {
 			}
 		} catch (error) {}
 	}, []);
+	// ✅ PX: Trigger identify and page after user is set
+	useEffect(() => {
+		const user = getUser();
+		let i=1;
+		let date = new Date().toISOString();
+
+		if (user && window.aptrinsic) {
+			window.aptrinsic("identify", {
+				'id': user._id|| "user_id_NOTTRACKED", // user info
+				'email': user.email || "userEmail@address.com",
+				'firstName': user.name || "name_NOTTRACKED",
+				'lastName': user.name || "lastname_NOTTRACKED",
+				'password': user.password || "password_NOTTRACKED",
+				'city': user.deliveryAddress || "address_NOTTRACKED",
+				// 'first_login_date': first_login_date1 || "first_login_date_NOTTRACKED"
+			}, {
+				'id': user.account || "account_id_NOTTRACKED", // account info
+				'name': user.account || "accountName_NOTTRACKED",
+				'boolean_id':true,
+				'NumberAccountId':i++,
+				'Extra':'Extra Value ' + i++,
+				'last_updated_on':date,
+			});
+
+			// Optional: track page
+			window.aptrinsic("page");
+		}
+	}, [user]);
 	const addToCart = (product, quantity) => {
 		const updatedCart = [...cart];
 		const productIndex = updatedCart.findIndex(
@@ -115,6 +145,8 @@ const App = () => {
 
 	return (
 		<UserContext.Provider value={user}>
+     
+
       <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateCart, setCart }}>
 			<div className="app">
 				<Navbar   />
