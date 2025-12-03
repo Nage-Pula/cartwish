@@ -122,6 +122,23 @@ const SignupPage = () => {
                         <option value="standard">Standard</option>
                         <option value="premium">Premium</option>
                         <option value="enterprise">Enterprise</option>
+                        <option value="elite">Elite</option>
+                        <option value="ultimate">Ultimate</option>
+                        <option value="pro">Pro</option>
+                        <option value="starter">Starter</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="business">Business</option>
+                        <option value="professional">Professional</option>
+                        <option value="corporate">Corporate</option>
+                        <option value="platinum">Platinum</option>
+                        <option value="gold">Gold</option>
+                        <option value="silver">Silver</option>
+                        <option value="bronze">Bronze</option>
+                        <option value="vip">VIP</option>
+                        <option value="member">Member</option>
+                        <option value="guest">Guest</option>
+                        <option value="Account1">Account1</option>
+
                     </select>
                         {errors.account && <em className='form_error'>{errors.account.message}</em>}
                     </div>

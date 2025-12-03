@@ -16,7 +16,8 @@ import App from './App.jsx'
     var c=t.getElementsByTagName("script")[0];
     c.parentNode.insertBefore(r,c)
   })
-  (window,document,"https://web-sdk.aptrinsic.com/api/aptrinsic.js","AP-WLHVOASMAZVB-2-4"),({iframeModeEnabled: true});
+  (window,document,"https://web-sdk.aptrinsic.com/api/aptrinsic.js","AP-WLHVOASMAZVB-2-4",{
+  "useSessionStorageForRedirect": true},{iframeModeEnabled: true});
 
 /*!-- Gainsight PX Tag--*/
 
