@@ -3,6 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script>
+    /* Gainsight PX Tag */
+
+  // (function(n,t,a,e,co){
+  //   var i="aptrinsic";
+  //   n[i]=n[i]||function(){
+  //     (n[i].q=n[i].q||[]).push(arguments)},
+  //     n[i].p=e;n[i].c=co;
+  //   var r=t.createElement("script");
+  //   r.async=!0,r.src=a+"?a="+e;
+  //   var c=t.getElementsByTagName("script")[0];
+  //   c.parentNode.insertBefore(r,c)
+  // })
+  // (window,document,"https://web-sdk.aptrinsic.com/api/aptrinsic.js","AP-WLHVOASMAZVB-2-4",{
+  // "useSessionStorageForRedirect": true},{iframeModeEnabled: true}, {"engagementCallDelay": 250});
+  </script>
   <title>Signup Portal</title>
   <style>
     body {
@@ -11,6 +27,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      overflow: hidden;
     }
 
     header {
@@ -44,6 +61,7 @@
       width: 100%;
       height: 100%;
       border: none;
+      overflow: hidden;
     }
 
     .spinner {
@@ -72,22 +90,25 @@
   <div class="iframe-container">
     <div class="spinner" id="loader">Loading...</div>
     <iframe src="signup.html" id="signupFrame"></iframe>
+    <div>
+      <h1>
+        Nage 
+      </h1>
+      <h1>
+        Pula
+      </h1>
+      <h1>
+        Gainsight
+      </h1>
+      <h1>
+        PX
+      </h1>
+    </div>
   </div>
 
-  <script>
-    /* Gainsight PX Tag */
 
-  (function(n,t,a,e,co){
-    var i="aptrinsic";
-    n[i]=n[i]||function(){
-      (n[i].q=n[i].q||[]).push(arguments)},
-      n[i].p=e;n[i].c=co;
-    var r=t.createElement("script");
-    r.async=!0,r.src=a+"?a="+e;
-    var c=t.getElementsByTagName("script")[0];
-    c.parentNode.insertBefore(r,c)
-  })
-  (window,document,"https://web-sdk.aptrinsic.com/api/aptrinsic.js","AP-WLHVOASMAZVB-2-4");
+  <script>
+  
 
 /*!-- Gainsight PX Tag--*/
     // const iframe = document.getElementById('signupFrame');

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getJwt, getUser } from "./Services/userServices";
+import "./globalbutton.scss";
 
 import UserContext from "./contexts/UserContext";
 import "./App.css";
@@ -12,8 +13,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getCartAPI } from "./components/Cart/cartServices"; // Importing the getCart function
 import CartContext from "./contexts/CartContext";
-import { removeFromCartAPI } from "./components/Cart/cartServices"; // Importing the removeFromCart function
-import IFrame from "./iFrame/iFrame"; // Importing the IFrame component
+import { removeFromCartAPI } from "./components/Cart/cartServices"; // Importing the 
+import { setPXGlobalContext } from "./utils/pcGlobalContext";
+import { BrowserRouter as Router, useLocation } from "react-router-dom";
+
 
 
 setAuthToken(getJwt());
@@ -37,7 +40,7 @@ const App = () => {
 	useEffect(() => {
 		const user = getUser();
 		let i=1;
-		let date = new Date().toISOString();
+		 const date = new Date("December 17, 2027");
 
 		if (user && window.aptrinsic) {
 			window.aptrinsic("identify", {
@@ -47,19 +50,62 @@ const App = () => {
 				'lastName': user.name || "lastname_NOTTRACKED",
 				'password': user.password || "password_NOTTRACKED",
 				'city': user.deliveryAddress || "address_NOTTRACKED",
-				// 'first_login_date': first_login_date1 || "first_login_date_NOTTRACKED"
+				'first_login_date': date,
+				'houseName':user.name+" Surray",
+				'Language':"English"
 			}, {
 				'id': user.account || "account_id_NOTTRACKED", // account info
 				'name': user.account || "accountName_NOTTRACKED",
 				'boolean_id':true,
 				'NumberAccountId':i++,
-				'Extra':'Extra Value ' + i++,
-				'last_updated_on':date,
-			});
-
+				'Extra':'Values are ' + i++,
+				'Lastdate':date,	
+				'CompanyName':user.account+" Account"	
+			}	
+		);
 			// Optional: track page
 			window.aptrinsic("page");
 		}
+		 // Add global context right after identify
+				setPXGlobalContext({
+				city: "Hyderabad",
+				role: "user.role",
+				plan: "Pro"
+				});
+
+				(function () {
+    function handleURLChange() {
+        const currentURL = window.location.href;
+        console.log("Current page URL nage:", currentURL);
+        aptrinsic('set', 'user', { "URL": currentURL });
+		window.aptrinsic('pageView');
+        if (currentURL.includes("news.html")) {
+            aptrinsic('set', 'globalContext', { "currentPageURL": currentURL, "subProductLevel2":{"name":"com.bmc.dsom.hgm","version":"25.3.00"} });
+        } else {
+            aptrinsic('set', 'globalContext', { "currentPageURL": currentURL,
+				"subProductLevel2":{"name":"com.bmc.dsom.hgm","version":"25.3.00"}
+			 });
+        }
+		// aptrinsic('track', 'dailyApiCalls', 
+		// 		{
+		// 		"timestamp":1658965172096,
+		// 		"apiCalls":10512,
+		// 		"apiType":"RESTful",
+		// 		"Category":"Machine Learning",
+		// 		"subscriptionName":"GCP"
+		// 		}
+		// 	); 
+    }
+	// aptrinsic("bot","search",{
+	// 	 "labels":["knowledge center"]
+	// });
+	aptrinsic("kcb","search",{
+		 "labels":["knowledge center"]
+	});
+
+    window.addEventListener('load', handleURLChange);
+	
+})();
 	}, [user]);
 	const addToCart = (product, quantity) => {
 		const updatedCart = [...cart];
@@ -143,6 +189,38 @@ const App = () => {
 		}
 	}, [user]);
 
+function RouteWatcher() {
+  const location = useLocation();
+
+  useEffect(() => {
+    // When route changes, update context
+    setPXGlobalContext({
+      currentRoute: location.pathname
+    });
+  }, [location]);
+
+  return null; // nothing to render
+}
+
+function AppTracking() {
+  useEffect(() => {
+    // On login or first load after identify
+    const userPersona = "User1"; // replace with your user role from login
+    const uiVersion = "v2";
+    const tenantId = "TENANT_123";
+    const isBetaUser = true;
+
+    setPXGlobalContext({
+      'persona': userPersona,   // string
+      'uiVersion': uiVersion,   // string/number
+      'tenantId': tenantId,     // string
+      'isBeta': isBetaUser      // boolean
+    });
+  }, []);
+}
+
+/********************************************************************************************/
+
 	return (
 		<UserContext.Provider value={user}>
      
@@ -153,10 +231,13 @@ const App = () => {
 				<main>
 					<ToastContainer position="bottom-right" />
 					<Routing  />
+					
 				</main>
+
 			</div>
       </CartContext.Provider>
 		</UserContext.Provider>
+		
 	);
 };
 

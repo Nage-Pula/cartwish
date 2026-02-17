@@ -36,10 +36,12 @@
 .navbar_search{
     flex: 1;
     height: 100%;
-    padding: 0 7px;
+    padding: 10 7px;
     font-size: 20px;
+    margin: 10px 10px;
     border: none;
     outline: none;
+
 }
 .search_button{
     height: 100%;

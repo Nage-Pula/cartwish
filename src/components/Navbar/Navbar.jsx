@@ -12,6 +12,8 @@ import UserContext from '../../contexts/UserContext';
 import CartContext from '../../contexts/CartContext'; // Importing CartContext
 import { getSuggestionsAPI } from '../../Services/ProductServices'
 import { getUser } from '../../Services/userServices'
+import ScrollableTabs from '../Scrollable/ScrollableTabs'; 
+import '../Scrollable/ScrollableTabs.css';
 
 
 const Navbar = () => {
@@ -79,7 +81,7 @@ const user = getUser
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={handleKeyDown}
             />
-            <button type="submit" className='search_button'>Search</button>
+            <button type="submit" id="search_button" className='search_button'>Search</button>
            {suggestions.length > 0 && <ul className="search_result">
               {suggestions.map((suggestion, index) => (
                 <li key={suggestion._id} className={selectedItem===index?'search_suggestion_link active':'search_suggestion_link'}>
@@ -97,9 +99,14 @@ const user = getUser
       <div className='align_center navbar_links'>
         <LinkWithIcon title="Home" link="/" emoji={rocket} />
         <LinkWithIcon title="Products" link="/products" emoji={star} />
+        <LinkWithIcon title="Scrollable Demo" link="/scrollable" emoji={star} />
+        <LinkWithIcon title="iFrame Demo" link="/iframe" emoji={star} />
+        <LinkWithIcon title="Hash Test" link="/hashtest" emoji={star} />
+        
         { !user && <>
           <LinkWithIcon title="LogIn" link="/login" emoji={idButton} />
           <LinkWithIcon title="SignUp" link="/signup" emoji={memo} />
+
         </>}
        { user && <>
          <LinkWithIcon title="My Orders" link="/myorders" emoji={order} />

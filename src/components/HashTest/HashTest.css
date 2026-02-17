@@ -1,0 +1,469 @@
+/* ============================
+   Hash Test Pages — Shared Styles
+   ============================ */
+
+.hashtest-container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  color: #e0e0e0;
+}
+
+.hashtest-container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6457f9, #43bf47);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.hashtest-container h2 {
+  font-size: 1.4rem;
+  color: #b0b0b0;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+/* Current Hash Display Bar */
+.hash-display-bar {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 1px solid #6457f933;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 85px;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hash-display-bar .label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #6457f9;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.hash-display-bar .hash-value {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 1.1rem;
+  color: #43bf47;
+  word-break: break-all;
+  flex: 1;
+}
+
+.hash-display-bar .hash-value.empty {
+  color: #666;
+  font-style: italic;
+}
+
+/* Cards */
+.hashtest-card {
+  background: linear-gradient(145deg, #1e1e30, #1a1a28);
+  border: 1px solid #2a2a40;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hashtest-card:hover {
+  border-color: #6457f966;
+  box-shadow: 0 4px 24px rgba(100, 87, 249, 0.1);
+}
+
+.hashtest-card h3 {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.hashtest-card p {
+  color: #888;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Link Cards (Landing Page) */
+.hashtest-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.hashtest-link-card {
+  background: linear-gradient(145deg, #1e1e30, #1a1a28);
+  border: 1px solid #2a2a40;
+  border-radius: 16px;
+  padding: 1.75rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: block;
+}
+
+.hashtest-link-card:hover {
+  border-color: #6457f9;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(100, 87, 249, 0.15);
+}
+
+.hashtest-link-card .card-emoji {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.hashtest-link-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.hashtest-link-card .card-desc {
+  font-size: 0.85rem;
+  color: #888;
+  line-height: 1.5;
+}
+
+.hashtest-link-card .card-route {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: #6457f9;
+  background: #6457f915;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* Section Navigation (Sections Page) */
+.hash-section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.hash-section-nav a {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  background: #2a2a40;
+  color: #b0b0b0;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+
+.hash-section-nav a:hover,
+.hash-section-nav a.active {
+  background: #6457f9;
+  color: #fff;
+  border-color: #6457f9;
+}
+
+.hash-section {
+  padding: 3rem 0;
+  border-bottom: 1px solid #2a2a40;
+  scroll-margin-top: 160px;
+}
+
+.hash-section:last-child {
+  border-bottom: none;
+}
+
+.hash-section h3 {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.hash-section p {
+  color: #999;
+  line-height: 1.7;
+  max-width: 700px;
+}
+
+.hash-section .section-id-badge {
+  display: inline-block;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: #43bf47;
+  background: #43bf4715;
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+  margin-bottom: 0.75rem;
+}
+
+/* Tabs (Tabs Page) */
+.hash-tabs-bar {
+  display: flex;
+  gap: 0;
+  margin-bottom: 0;
+  border-bottom: 2px solid #2a2a40;
+}
+
+.hash-tab-btn {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.25s ease;
+  margin-bottom: -2px;
+}
+
+.hash-tab-btn:hover {
+  color: #ccc;
+}
+
+.hash-tab-btn.active {
+  color: #6457f9;
+  border-bottom-color: #6457f9;
+}
+
+.hash-tab-content {
+  background: linear-gradient(145deg, #1e1e30, #1a1a28);
+  border: 1px solid #2a2a40;
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  padding: 2rem;
+  min-height: 200px;
+}
+
+.hash-tab-content h3 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.hash-tab-content p {
+  color: #999;
+  line-height: 1.6;
+}
+
+/* Key-Value Table (Params Page) */
+.hash-kv-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.hash-kv-table th {
+  background: #6457f920;
+  color: #6457f9;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.hash-kv-table td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid #2a2a40;
+  font-size: 0.9rem;
+  color: #ccc;
+  font-family: 'Fira Code', monospace;
+}
+
+.hash-kv-table tr:last-child td {
+  border-bottom: none;
+}
+
+.hash-kv-table .remove-btn {
+  background: #e74c3c22;
+  color: #e74c3c;
+  border: 1px solid #e74c3c44;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.hash-kv-table .remove-btn:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* Forms */
+.hash-form-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hash-input {
+  padding: 0.6rem 1rem;
+  background: #12121e;
+  border: 1px solid #2a2a40;
+  border-radius: 8px;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  flex: 1;
+  min-width: 120px;
+  transition: border-color 0.2s ease;
+}
+
+.hash-input:focus {
+  outline: none;
+  border-color: #6457f9;
+}
+
+.hash-input::placeholder {
+  color: #555;
+}
+
+/* Buttons */
+.hash-btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.hash-btn-primary {
+  background: linear-gradient(135deg, #6457f9, #7b6ffa);
+  color: #fff;
+}
+
+.hash-btn-primary:hover {
+  box-shadow: 0 4px 16px rgba(100, 87, 249, 0.3);
+  transform: translateY(-1px);
+}
+
+.hash-btn-secondary {
+  background: #2a2a40;
+  color: #b0b0b0;
+  border: 1px solid #3a3a50;
+}
+
+.hash-btn-secondary:hover {
+  background: #3a3a50;
+  color: #fff;
+}
+
+.hash-btn-danger {
+  background: #e74c3c22;
+  color: #e74c3c;
+  border: 1px solid #e74c3c44;
+}
+
+.hash-btn-danger:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* Preset Buttons */
+.hash-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.hash-presets .hash-btn {
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+}
+
+/* Back Link */
+.hashtest-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #6457f9;
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.hashtest-back:hover {
+  color: #7b6ffa;
+}
+
+/* Empty state */
+.hash-empty {
+  text-align: center;
+  padding: 2rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* Reference table */
+.hash-ref-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.hash-ref-table th {
+  background: #1a1a2e;
+  color: #6457f9;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.6rem 1rem;
+  text-align: left;
+}
+
+.hash-ref-table td {
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid #1a1a2e;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.hash-ref-table td code {
+  font-family: 'Fira Code', monospace;
+  background: #6457f910;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  color: #43bf47;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .hashtest-container {
+    padding: 0 1rem;
+  }
+  .hash-display-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .hashtest-links {
+    grid-template-columns: 1fr;
+  }
+  .hash-tabs-bar {
+    overflow-x: auto;
+  }
+}
