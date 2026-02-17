@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  //<!-- Gainsight PX Tag-->
-  <script type="text/javascript">
+  <!-- Gainsight PX Tag-->
+  <!-- <script type="text/javascript">
   (function(n,t,a,e,co){var i="aptrinsic";n[i]=n[i]||function(){
       (n[i].q=n[i].q||[]).push(arguments)},n[i].p=e;n[i].c=co;
     var r=t.createElement("script");r.async=!0,r.src=a+"?a="+e;
     var c=t.getElementsByTagName("script")[0];c.parentNode.insertBefore(r,c)
   })(window,document,"https://web-sdk.aptrinsic.com/api/aptrinsic.js","AP-WLHVOASMAZVB-2-4");
-</script>
-//<!-- Gainsight PX Tag-->
+</script> -->
+<!-- Gainsight PX Tag-->
   <title>Signup</title>
   <style>
     body {
@@ -62,6 +62,47 @@
     <input type="email" name="email" placeholder="Email" required />
     <button type="submit">Sign Up</button>
   </form>
+  <div>
+      <h1>
+        Nage 
+      </h1>
+      <h1>
+        Pula
+      </h1>
+      <h1>
+        Gainsight
+      </h1>
+      <h1>
+        PX
+      </h1>
+    </div>
+    <div>
+      <img src="/Users/npula/Desktop/Projects/cartwish/public/vite.svg" alt="" style="width: 10%;" height="20%">
+    </div>
+    <div>
+      <h1>
+        A
+      </h1>
+      <h1>
+        A
+      </h1>
+
+<h1>
+        A
+      </h1>
+    <h1>
+        A
+      </h1>
+    <h1>
+        A
+      </h1> 
+    <h1>
+        A
+      </h1>
+    <h1>
+        A
+      </h1>
+       </div>
 
   <script>
 
@@ -80,21 +121,21 @@
     // });
   const form = document.getElementById('signupForm');
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-    aptrinsic("identify", {
-      "id": data.email+" iframe",
-      "name": data.name,
-    },
-      {
-        "id":data.name+" iframe account",
-        "email": data.email
-      }
-    );
-    window.parent.postMessage({ type: "signupSuccess", data }, window.location.origin);
-  });
+  // form.addEventListener('submit', function(e) {
+  //   e.preventDefault();
+  //   const formData = new FormData(form);
+  //   const data = Object.fromEntries(formData);
+  //   aptrinsic("identify", {
+  //     "id": data.email+" iframe",
+  //     "name": data.name,
+  //   },
+  //     {
+  //       "id":data.name+" iframe account",
+  //       "email": data.email
+  //     }
+  //   );
+  //   window.parent.postMessage({ type: "signupSuccess", data }, window.location.origin);
+  // });
 
 
   </script>

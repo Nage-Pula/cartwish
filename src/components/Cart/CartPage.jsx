@@ -7,11 +7,9 @@ import QuantityInput from "../SingleProduct/QuantityInput"; // Importing the Qua
 import remove from "../../assets/remove.png"; // Assuming you have a remove icon
 import CartContext from "../../contexts/CartContext"; // Importing CartContext
 import { toast } from "react-toastify"; // Importing toast for notifications
-import { set } from './../../../node_modules/zod/v4/classic/schemas';
 import { checkoutAPI } from "../../Services/orderServices";
-import IFrame from "../../iFrame/iFrame"; // Importing the IFrame component
-import { getUser } from '../../Services/userServices';
-
+import axios from 'axios';
+import { getUser } from "../../Services/userServices";
 
 
 
@@ -19,6 +17,8 @@ const CartPage = () => {
 	const [subTotal, setSubTotal] = useState(0);
 	const userObj = useContext(UserContext); // Using UserContext to get user info
 	const { cart, removeFromCart, updateCart, setCart } = useContext(CartContext);
+	const [iframeContent, setIframeContent] = useState('');
+
 	useEffect(() => {
 		let total = 0;
 		cart.forEach((item) => {
@@ -27,6 +27,22 @@ const CartPage = () => {
 		});
 		setSubTotal(total);
 	}, [cart]);
+
+
+	 useEffect(() => {
+    const fetchHTML = async () => {
+      try {
+        const response = await axios.get('/iFrame/index.html'); // Adjust the path as necessary
+        setIframeContent(response.data);
+      } catch (error) {
+        console.error('Error fetching the HTML:', error);
+        toast.error("Failed to load iframe content");
+      }
+    };
+
+    fetchHTML();
+  }, []);
+
 
 	const checkout = () => {
 		const oldCart = [...cart];
@@ -94,18 +110,18 @@ const CartPage = () => {
 				</tbody>
 			</table>
 			<button className="search_button Checkout_button" onClick={checkout}>Checkout</button>
-		</section><div>
-				<IFrame
-					src="/iFrame/index.html"
-					title="Example IFrame"
-					width={600}
-					height={800} 
-					position="bottom-right"
-					/>
+		</section>
+		<div>
+				{iframeContent ? (
+        <iframe
+          srcDoc={iframeContent}
+          title="iframe content"
+          style={{ width: "100%", height: "500px", border: "none" }}
+        />
+      ) : (
+        <p>Loading iframe content...</p> // Optional loading state
+      )}
 			</div></>
 	);
 };
-
-
-
 export default CartPage;

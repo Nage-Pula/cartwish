@@ -13,8 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getCartAPI } from "./components/Cart/cartServices"; // Importing the getCart function
 import CartContext from "./contexts/CartContext";
-import { removeFromCartAPI } from "./components/Cart/cartServices"; // Importing the removeFromCart function
-import IFrame from "./iFrame/iFrame"; // Importing the IFrame component
+import { removeFromCartAPI } from "./components/Cart/cartServices"; // Importing the 
 import { setPXGlobalContext } from "./utils/pcGlobalContext";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 
@@ -77,8 +76,9 @@ const App = () => {
 				(function () {
     function handleURLChange() {
         const currentURL = window.location.href;
-        console.log("Current page URL:", currentURL);
+        console.log("Current page URL nage:", currentURL);
         aptrinsic('set', 'user', { "URL": currentURL });
+		window.aptrinsic('pageView');
         if (currentURL.includes("news.html")) {
             aptrinsic('set', 'globalContext', { "currentPageURL": currentURL, "subProductLevel2":{"name":"com.bmc.dsom.hgm","version":"25.3.00"} });
         } else {
@@ -86,8 +86,25 @@ const App = () => {
 				"subProductLevel2":{"name":"com.bmc.dsom.hgm","version":"25.3.00"}
 			 });
         }
+		// aptrinsic('track', 'dailyApiCalls', 
+		// 		{
+		// 		"timestamp":1658965172096,
+		// 		"apiCalls":10512,
+		// 		"apiType":"RESTful",
+		// 		"Category":"Machine Learning",
+		// 		"subscriptionName":"GCP"
+		// 		}
+		// 	); 
     }
+	// aptrinsic("bot","search",{
+	// 	 "labels":["knowledge center"]
+	// });
+	aptrinsic("kcb","search",{
+		 "labels":["knowledge center"]
+	});
+
     window.addEventListener('load', handleURLChange);
+	
 })();
 	}, [user]);
 	const addToCart = (product, quantity) => {
@@ -202,7 +219,7 @@ function AppTracking() {
   }, []);
 }
 
-
+/********************************************************************************************/
 
 	return (
 		<UserContext.Provider value={user}>
